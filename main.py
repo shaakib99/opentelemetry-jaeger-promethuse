@@ -35,7 +35,7 @@ async def request_response_middleware(request:Request, call_next):
 
         response_body = b""
 
-        for chunk in response.body_iterator:
+        async for chunk in response.body_iterator:
             response_body += chunk
         
         tracer.set_attribute('http.response_status_code', response.status_code)
